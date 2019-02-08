@@ -20,9 +20,11 @@ public class Solution5607 {
 			fac[i] = fac[i-1] * i % P;
 		}
 		
+		/** inv[5] = 1/5! */
 		inv[1000000] = power(fac[1000000], P-2);
 		for(int i=1000000-1; i>0; i--) {
 			inv[i] = (inv[i+1] * (i+1)) % P;
+			/** 1/99! = 1/100! * 100 */
 		}
 		
 		for(int test_case=1; test_case<=T; test_case++) {
@@ -40,11 +42,11 @@ public class Solution5607 {
 		while(y>0) {
 			if(y%2 == 1) {
 				ret *= x;
-				ret %= P;
+				ret %= P; // mod 연산
 			}
-			x *= x;
-			x %= P;
 			y /= 2;
+			x *= x;
+			x %= P; // mod 연산
 		}
 		return ret;
 	}
